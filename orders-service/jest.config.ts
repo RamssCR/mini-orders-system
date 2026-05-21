@@ -8,7 +8,7 @@ const tsconfigContent = fs.readFileSync(tsconfigPath, 'utf8');
 const { compilerOptions } = JSON.parse(tsconfigContent);
 
 const config: Config = {
-  displayName: 'app-gateway',
+  displayName: 'orders-service',
   moduleFileExtensions: ['js', 'json', 'ts'],
   rootDir: '.',
   testRegex: '.*\\.spec\\.ts$',
