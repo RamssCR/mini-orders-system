@@ -8,4 +8,5 @@ if (!parsed.success) {
   process.exit(1);
 }
 
-export const { DB_HOST, DB_NAME, DB_PASSWORD, DB_PORT, DB_USER } = parsed.data;
+export const { DB_HOST, DB_NAME, DB_PASSWORD, DB_PORT, DB_USER, NODE_ENV } =
+  parsed.data;

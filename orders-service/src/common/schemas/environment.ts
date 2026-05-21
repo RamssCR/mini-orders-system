@@ -1,6 +1,9 @@
 import { z } from 'zod';
 
 export const env = z.object({
+  NODE_ENV: z
+    .enum(['development', 'test', 'staging', 'production'])
+    .default('development'),
   DB_HOST: z.string().default('localhost'),
   DB_USER: z.string(),
   DB_PASSWORD: z.string(),
