@@ -20,6 +20,7 @@
     "forceConsistentCasingInFileNames": true,
     "noImplicitAny": true,
     "strictBindCallApply": false,
+    "strictPropertyInitialization": false,
     "noFallthroughCasesInSwitch": true,
     "paths": {
       "#*": ["./src/*"]
