@@ -6,12 +6,20 @@ import tseslint from 'typescript-eslint';
 
 export default tseslint.config(
   {
-    ignores: ['eslint.config.mjs'],
+    ignores: [
+      'eslint.config.mjs',
+      '**/dist/**',
+      '**/node_modules/**',
+      '**/coverage/**',
+      'lint-staged.config.js',
+      '**/jest.config.ts'
+    ],
   },
   eslint.configs.recommended,
   ...tseslint.configs.recommendedTypeChecked,
   eslintPluginPrettierRecommended,
   {
+    files: ["**/*.ts"],
     languageOptions: {
       globals: {
         ...globals.node,
@@ -29,7 +37,8 @@ export default tseslint.config(
       '@typescript-eslint/no-explicit-any': 'error',
       '@typescript-eslint/no-floating-promises': 'warn',
       '@typescript-eslint/no-unsafe-argument': 'warn',
-      '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }]
+      '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
+      "prettier/prettier": ["error", { endOfLine: "auto" }],
     },
   },
 );
