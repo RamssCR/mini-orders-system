@@ -16,7 +16,7 @@ const getAllowedTransitions = (): Record<Status, Status[]> => {
 
   return {
     [pending]: [paid, cancelled],
-    [paid]: [cancelled],
+    [paid]: [completed, cancelled],
     [completed]: [],
     [cancelled]: [],
   };
