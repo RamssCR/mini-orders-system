@@ -9,6 +9,8 @@ export const env = z.object({
   DB_PASSWORD: z.string(),
   DB_PORT: z.coerce.number().positive().default(5432),
   DB_NAME: z.string(),
+  RABBITMQ_URLS: z.string().transform((value) => value.trim().split(',')),
+  RABBITMQ_QUEUE: z.string(),
 });
 
 export type Env = z.infer<typeof env>;
