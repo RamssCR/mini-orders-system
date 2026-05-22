@@ -8,4 +8,10 @@ if (!parsed.success) {
   process.exit(1);
 }
 
-export const { MONGO_NAME, MONGO_PASSWORD, MONGO_USER } = parsed.data;
+export const {
+  MONGO_HOST,
+  MONGO_NAME,
+  MONGO_PASSWORD,
+  MONGO_PORT,
+  MONGO_USER,
+} = parsed.data;
