@@ -1,5 +1,6 @@
 import { MessagePattern, Payload } from '@nestjs/microservices';
 import { Controller } from '@nestjs/common';
+import { ChangeStatusDto } from './dtos/change-status.dto';
 import { CreateOrderDto } from './dtos/create-order.dto';
 import { OrdersQueryDto } from './dtos/orders-query.dto';
 import { OrdersService } from './orders.service';
@@ -19,7 +20,7 @@ export class OrdersController {
   }
 
   @MessagePattern('order.status')
-  changeStatus(@Payload('id') id: string) {
-    return this.ordersService.updateStatus(id);
+  changeStatus(@Payload() payload: ChangeStatusDto) {
+    return this.ordersService.updateStatus(payload);
   }
 }
