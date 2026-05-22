@@ -1,9 +1,10 @@
+import { ALLOWED_TRANSITIONS, Order } from './entities/order.entity';
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { In, Repository } from 'typeorm';
+import { ChangeStatusDto } from './dtos/change-status.dto';
 import { CreateOrderDto } from './dtos/create-order.dto';
 import { DatabaseTransactionService } from '#common/providers/query-runner.service';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Order } from './entities/order.entity';
 import { OrderItem } from './entities/order-items.entity';
 import { OrdersQueryDto } from './dtos/orders-query.dto';
 import { Paginated } from '#common/types/pagination';
@@ -69,12 +70,20 @@ export class OrdersService {
     });
   }
 
-  async updateStatus(id: string): Promise<void> {
-    const order = await this.orderRepository.findOneOrFail({ where: { id } });
-    if (order.status === 'completed') return;
+  async updateStatus({ id, status }: ChangeStatusDto): Promise<Order> {
+    const order = await this.orderRepository.findOne({ where: { id } });
+    if (!order) throw new BadRequestException('Invalid order ID');
 
-    order.status = 'completed';
-    await this.orderRepository.save(order);
+    const currentStatus = order.status;
+    if (currentStatus === status) return order;
+
+    if (!ALLOWED_TRANSITIONS[currentStatus].includes(status))
+      throw new BadRequestException(
+        `Invalid status transition: Cannot change from ${currentStatus} to ${status}`,
+      );
+
+    order.status = status;
+    return await this.orderRepository.save(order);
   }
 
   private async findOrCreateUser(
@@ -105,7 +114,9 @@ export class OrdersService {
     });
 
     if (products.length !== productsDto.length)
-      throw new BadRequestException(`Some products were not found`);
+      throw new BadRequestException(
+        'Some products were not found during order creation',
+      );
 
     return products;
   }
