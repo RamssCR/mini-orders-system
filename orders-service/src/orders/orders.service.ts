@@ -8,7 +8,7 @@ import { OrderItem } from './entities/order-items.entity';
 import { OrdersQueryDto } from './dtos/orders-query.dto';
 import { Paginated } from '#common/types/pagination';
 import { Product } from './entities/product.entity';
-import { QueryRunner } from 'typeorm/browser';
+import { QueryRunner } from 'typeorm';
 import { User } from './entities/user.entity';
 
 @Injectable()
@@ -25,7 +25,12 @@ export class OrdersService {
     const [orders, total] = await this.orderRepository.findAndCount({
       skip: offset,
       take: limit,
-      where: { status: queries?.status, user: { id: queries?.userId } },
+      relations: { items: true },
+      order: { createdAt: 'DESC' },
+      where: {
+        ...(queries?.status && { status: queries.status }),
+        ...(queries?.userId && { user: { id: queries.userId } }),
+      },
     });
 
     return {
