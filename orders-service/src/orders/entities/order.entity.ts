@@ -1,6 +1,6 @@
-import { Column, Entity, JoinTable, ManyToMany, ManyToOne } from 'typeorm';
+import { Column, Entity, ManyToOne, OneToMany } from 'typeorm';
 import { BaseEntity } from '#common/entities/base.entity';
-import { Product } from './product.entity';
+import { OrderItem } from './order-items.entity';
 import { User } from './user.entity';
 
 export const ORDER_STATUS = ['pending', 'cancelled', 'completed'] as const;
@@ -11,16 +11,11 @@ export class Order extends BaseEntity {
   @Column()
   quantity: number;
 
-  @Column({ type: 'enum', enum: ORDER_STATUS })
+  @Column({ type: 'enum', enum: ORDER_STATUS, default: 'pending' })
   status: Status;
 
-  @ManyToMany(() => Product, (product) => product.orders)
-  @JoinTable({
-    name: 'order_products',
-    joinColumn: { name: 'order_id', referencedColumnName: 'id' },
-    inverseJoinColumn: { name: 'product_id', referencedColumnName: 'id' },
-  })
-  products: Product[];
+  @OneToMany(() => OrderItem, (item) => item.order, { cascade: true })
+  items: OrderItem[];
 
   @ManyToOne(() => User, (user) => user.orders)
   user: User;
