@@ -3,8 +3,26 @@ import { BaseEntity } from '#common/entities/base.entity';
 import { OrderItem } from './order-items.entity';
 import { User } from './user.entity';
 
-export const ORDER_STATUS = ['pending', 'cancelled', 'completed'] as const;
+export const ORDER_STATUS = [
+  'pending',
+  'paid',
+  'cancelled',
+  'completed',
+] as const;
 export type Status = (typeof ORDER_STATUS)[number];
+
+const getAllowedTransitions = (): Record<Status, Status[]> => {
+  const [pending, paid, cancelled, completed] = ORDER_STATUS;
+
+  return {
+    [pending]: [paid, cancelled],
+    [paid]: [cancelled],
+    [completed]: [],
+    [cancelled]: [],
+  };
+};
+
+export const ALLOWED_TRANSITIONS = getAllowedTransitions();
 
 @Entity('orders')
 export class Order extends BaseEntity {
