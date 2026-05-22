@@ -14,10 +14,6 @@ class ProductDto {
   @IsNotEmpty()
   id: string;
 
-  @IsString()
-  @IsNotEmpty()
-  name: string;
-
   @IsNumber()
   @IsNotEmpty()
   quantity: number;
@@ -28,6 +24,11 @@ export class CreateOrderDto {
   @Length(4, 25)
   @IsNotEmpty()
   name: string;
+
+  @IsString()
+  @Length(7, 11)
+  @IsNotEmpty()
+  documentId: string;
 
   @IsString()
   @Length(8, 12)
