@@ -7,6 +7,9 @@ export class User extends BaseEntity {
   @Column()
   name: string;
 
+  @Column({ unique: true })
+  documentId: string;
+
   @Column()
   phone: string;
 
