@@ -1,0 +1,20 @@
+import { EventPattern, MessagePattern, Payload } from '@nestjs/microservices';
+import { AuditsService } from './audits.service';
+import { Controller } from '@nestjs/common';
+import { CreateAuditDto } from './dtos/create-audit.dto';
+import { Audit } from './entities/audit.entity';
+
+@Controller()
+export class AuditsController {
+  constructor(private readonly auditsService: AuditsService) {}
+
+  @MessagePattern('order.audits')
+  findOrderAudits(@Payload('orderId') orderId: string): Promise<Audit[]> {
+    return this.auditsService.findOrderAudits(orderId);
+  }
+
+  @EventPattern('create.audit')
+  create(@Payload() payload: CreateAuditDto): Promise<void> {
+    return this.auditsService.create(payload);
+  }
+}
