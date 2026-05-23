@@ -17,4 +17,7 @@ export const {
   NODE_ENV,
   RABBITMQ_QUEUE,
   RABBITMQ_URLS,
+  TCP_HOST,
+  TCP_NAME,
+  TCP_PORT,
 } = parsed.data;
