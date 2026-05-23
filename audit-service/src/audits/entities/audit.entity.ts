@@ -6,7 +6,7 @@ export type AuditDocument = HydratedDocument<Audit>;
 
 @Schema()
 export class Audit {
-  @Prop({ required: true, unique: true })
+  @Prop({ required: true, index: true })
   orderId: string;
 
   @Prop({ required: true, enum: ORDER_STATUS })
@@ -15,7 +15,7 @@ export class Audit {
   @Prop({ required: true, enum: ORDER_STATUS })
   toStatus: Status;
 
-  @Prop()
+  @Prop({ default: Date.now })
   timestamp: Date;
 
   @Prop(raw({ userId: String, quantity: Number }))
