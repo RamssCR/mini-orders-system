@@ -1,8 +1,8 @@
 import { EventPattern, MessagePattern, Payload } from '@nestjs/microservices';
+import { Audit } from './entities/audit.entity';
 import { AuditsService } from './audits.service';
 import { Controller } from '@nestjs/common';
 import { CreateAuditDto } from './dtos/create-audit.dto';
-import { Audit } from './entities/audit.entity';
 
 @Controller()
 export class AuditsController {
