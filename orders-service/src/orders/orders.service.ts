@@ -1,7 +1,9 @@
 import { ALLOWED_TRANSITIONS, Order } from './entities/order.entity';
-import { BadRequestException, Injectable } from '@nestjs/common';
+import { BadRequestException, Inject, Injectable } from '@nestjs/common';
 import { In, Repository } from 'typeorm';
 import { ChangeStatusDto } from './dtos/change-status.dto';
+import { ClientProxy } from '@nestjs/microservices';
+import { CreateAudit } from './interfaces/create-audit.interface';
 import { CreateOrderDto } from './dtos/create-order.dto';
 import { DatabaseTransactionService } from '#common/providers/query-runner.service';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -10,6 +12,7 @@ import { OrdersQueryDto } from './dtos/orders-query.dto';
 import { Paginated } from '#common/types/pagination';
 import { Product } from './entities/product.entity';
 import { QueryRunner } from 'typeorm';
+import { TCP_NAME } from '#config/environment';
 import { User } from './entities/user.entity';
 
 @Injectable()
@@ -17,6 +20,8 @@ export class OrdersService {
   constructor(
     @InjectRepository(Order)
     private readonly orderRepository: Repository<Order>,
+    @Inject(TCP_NAME)
+    private readonly client: ClientProxy,
     private readonly transactionService: DatabaseTransactionService,
   ) {}
 
@@ -71,7 +76,10 @@ export class OrdersService {
   }
 
   async updateStatus({ id, status }: ChangeStatusDto): Promise<Order> {
-    const order = await this.orderRepository.findOne({ where: { id } });
+    const order = await this.orderRepository.findOne({
+      where: { id },
+      relations: { items: true, user: true },
+    });
     if (!order) throw new BadRequestException('Invalid order ID');
 
     const currentStatus = order.status;
@@ -83,6 +91,16 @@ export class OrdersService {
       );
 
     order.status = status;
+    this.client.emit('create.audit', {
+      orderId: order.id,
+      fromStatus: currentStatus,
+      toStatus: status,
+      timestamp: new Date(),
+      metadata: {
+        quantity: order.quantity,
+        userId: order.user.id,
+      },
+    } satisfies CreateAudit);
     return await this.orderRepository.save(order);
   }
 
