@@ -14,4 +14,6 @@ export const {
   MONGO_PASSWORD,
   MONGO_PORT,
   MONGO_USER,
+  TCP_HOST,
+  TCP_PORT,
 } = parsed.data;
