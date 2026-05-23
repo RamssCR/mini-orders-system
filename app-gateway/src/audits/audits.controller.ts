@@ -1,7 +1,16 @@
-import { Controller } from '@nestjs/common';
-import { AuditsService } from './audits.service';
+import { Controller, Get, Inject, Param } from '@nestjs/common';
+import { TCP_NAME } from '#config/environment';
+import { ClientProxy } from '@nestjs/microservices';
 
-@Controller()
+@Controller('audits')
 export class AuditsController {
-  constructor(private readonly auditsService: AuditsService) {}
+  constructor(
+    @Inject(TCP_NAME)
+    private readonly client: ClientProxy,
+  ) {}
+
+  @Get()
+  findByOrder(@Param('orderId') orderId: string) {
+    return this.client.send('order.audits', { orderId });
+  }
 }
