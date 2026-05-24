@@ -3,8 +3,6 @@ services:
   orders-database:
     image: postgres:15-alpine
     container_name: orders-database
-    env_file:
-      - ./orders-service/.env
     environment:
       POSTGRES_USER: ${DB_USER}
       POSTGRES_PASSWORD: ${DB_PASSWORD}
@@ -14,16 +12,14 @@ services:
     volumes:
       - pgdata:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_NAME"]
+      test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB"]
       interval: 5s
       timeout: 5s
       retries: 5
 
   audit-db:
-    image: mongo:6.0-alpine
+    image: mongo:6.0
     container_name: audit-db
-    env_file:
-      - ./audit-service/.env
     environment:
       MONGO_INITDB_ROOT_USERNAME: ${MONGO_USER}
       MONGO_INITDB_ROOT_PASSWORD: ${MONGO_PASSWORD}
@@ -41,8 +37,6 @@ services:
   rabbitmq:
     image: rabbitmq:3-management-alpine
     container_name: orders-rabbitmq
-    env_file:
-      - ./app-gateway/.env
     ports:
       - "5672:5672"
       - "15672:15672" # UI
