@@ -1,6 +1,8 @@
 import { env } from '#common/schemas/environment';
 import { treeifyError } from 'zod';
 
+if (process.env.NODE_ENV !== 'production') process.loadEnvFile();
+
 const parsed = env.safeParse(process.env);
 
 if (!parsed.success) {
