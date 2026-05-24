@@ -12,6 +12,7 @@ import { ClientProxy } from '@nestjs/microservices';
 import { CreateOrderDto } from './dtos/create-order.dto';
 import { OrdersQueryDto } from './dtos/orders-query.dto';
 import { RABBITMQ_NAME } from '#config/environment';
+import type { Status } from './dtos/order-status';
 
 @Controller('orders')
 export class OrdersController {
@@ -30,8 +31,8 @@ export class OrdersController {
     return this.client.send('place.order', payload);
   }
 
-  @Put()
-  changeStatus(@Param('orderId') orderId: string) {
-    return this.client.emit('order.status', { orderId });
+  @Put(':id/status')
+  changeStatus(@Param('id') orderId: string, @Query('status') status: Status) {
+    return this.client.send('order.status', { orderId, status });
   }
 }

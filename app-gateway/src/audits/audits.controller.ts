@@ -9,8 +9,8 @@ export class AuditsController {
     private readonly client: ClientProxy,
   ) {}
 
-  @Get()
+  @Get(':orderId')
   findByOrder(@Param('orderId') orderId: string) {
-    return this.client.send('order.audits', { orderId });
+    return this.client.send('order.audits', orderId);
   }
 }

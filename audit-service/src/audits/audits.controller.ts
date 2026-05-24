@@ -9,7 +9,7 @@ export class AuditsController {
   constructor(private readonly auditsService: AuditsService) {}
 
   @MessagePattern('order.audits')
-  findOrderAudits(@Payload('orderId') orderId: string): Promise<Audit[]> {
+  findOrderAudits(@Payload() orderId: string): Promise<Audit[]> {
     return this.auditsService.findOrderAudits(orderId);
   }
 
