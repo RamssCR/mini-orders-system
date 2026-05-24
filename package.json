@@ -4,7 +4,10 @@
   "description": "",
   "scripts": {
     "prepare": "husky",
-    "lint": "eslint . --config eslint.config.mjs"
+    "lint": "eslint . --config eslint.config.mjs",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:cov": "jest --coverage"
   },
   "keywords": [],
   "author": "",
