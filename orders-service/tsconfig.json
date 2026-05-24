@@ -23,7 +23,8 @@
     "strictPropertyInitialization": false,
     "noFallthroughCasesInSwitch": true,
     "paths": {
-      "#*": ["./src/*"]
+      "#*": ["./src/*"],
+      "$seeders/*": ["./seeders/*"]
     }
   }
 }
