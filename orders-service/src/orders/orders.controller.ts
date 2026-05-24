@@ -9,17 +9,17 @@ import { OrdersService } from './orders.service';
 export class OrdersController {
   constructor(private readonly ordersService: OrdersService) {}
 
-  @MessagePattern('orders')
+  @MessagePattern('orders.find_paginated')
   findAll(@Payload() queries: OrdersQueryDto) {
     return this.ordersService.findPaginated(queries);
   }
 
-  @MessagePattern('place.order')
+  @MessagePattern('order.create')
   create(@Payload() payload: CreateOrderDto) {
     return this.ordersService.create(payload);
   }
 
-  @MessagePattern('order.status')
+  @MessagePattern('order.update_status')
   changeStatus(@Payload() payload: ChangeStatusDto) {
     return this.ordersService.updateStatus(payload);
   }

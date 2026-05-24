@@ -1,5 +1,9 @@
+import {
+  AUDIT_SERVICE_HOST,
+  AUDIT_SERVICE_PORT,
+  AUDIT_SERVICE_PROXY,
+} from '#config/environment';
 import { ClientsModule, Transport } from '@nestjs/microservices';
-import { TCP_HOST, TCP_NAME, TCP_PORT } from '#config/environment';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { DatabaseModule } from '#common/modules/database.module';
@@ -11,11 +15,11 @@ import { PipesModule } from '#common/pipes/pipes.module';
   imports: [
     ClientsModule.register([
       {
-        name: TCP_NAME,
+        name: AUDIT_SERVICE_PROXY,
         transport: Transport.TCP,
         options: {
-          host: TCP_HOST,
-          port: TCP_PORT,
+          host: AUDIT_SERVICE_HOST,
+          port: AUDIT_SERVICE_PORT,
         },
       },
     ]),

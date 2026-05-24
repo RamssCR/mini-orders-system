@@ -1,11 +1,11 @@
 import { ClientsModule, Transport } from '@nestjs/microservices';
 import {
-  RABBITMQ_NAME,
-  RABBITMQ_QUEUE,
-  RABBITMQ_URLS,
-  TCP_HOST,
-  TCP_NAME,
-  TCP_PORT,
+  AUDIT_SERVICE_HOST,
+  AUDIT_SERVICE_PORT,
+  AUDIT_SERVICE_PROXY,
+  ORDERS_SERVICE_PROXY,
+  ORDERS_SERVICE_QUEUE,
+  ORDERS_SERVICE_URLS,
 } from '#config/environment';
 import { Module } from '@nestjs/common';
 
@@ -13,20 +13,20 @@ import { Module } from '@nestjs/common';
   imports: [
     ClientsModule.register([
       {
-        name: RABBITMQ_NAME,
+        name: ORDERS_SERVICE_PROXY,
         transport: Transport.RMQ,
         options: {
-          urls: RABBITMQ_URLS,
-          queue: RABBITMQ_QUEUE,
+          urls: ORDERS_SERVICE_URLS,
+          queue: ORDERS_SERVICE_QUEUE,
           queueOptions: { durable: false },
         },
       },
       {
-        name: TCP_NAME,
+        name: AUDIT_SERVICE_PROXY,
         transport: Transport.TCP,
         options: {
-          host: TCP_HOST,
-          port: TCP_PORT,
+          host: AUDIT_SERVICE_HOST,
+          port: AUDIT_SERVICE_PORT,
         },
       },
     ]),

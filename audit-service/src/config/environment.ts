@@ -9,11 +9,11 @@ if (!parsed.success) {
 }
 
 export const {
+  AUDIT_SERVICE_HOST,
+  AUDIT_SERVICE_PORT,
   MONGO_HOST,
   MONGO_NAME,
   MONGO_PASSWORD,
   MONGO_PORT,
   MONGO_USER,
-  TCP_HOST,
-  TCP_PORT,
 } = parsed.data;

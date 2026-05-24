@@ -1,4 +1,4 @@
-import { ALLOWED_ORIGIN, NODE_ENV, PORT } from '#config/environment';
+import { ALLOWED_ORIGINS, NODE_ENV, PORT } from '#config/environment';
 import { AppModule } from './app.module';
 import { Logger } from '@nestjs/common';
 import { NestExpressApplication } from '@nestjs/platform-express';
@@ -13,7 +13,7 @@ async function bootstrap() {
   app.set('query parser', 'extended');
   app.use(helmet());
   app.enableCors({
-    origin: NODE_ENV === 'development' ? '*' : ALLOWED_ORIGIN,
+    origin: NODE_ENV === 'development' ? '*' : ALLOWED_ORIGINS,
   });
 
   await app.listen(PORT);

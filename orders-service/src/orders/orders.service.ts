@@ -1,6 +1,7 @@
 import { ALLOWED_TRANSITIONS, Order } from './entities/order.entity';
 import { BadRequestException, Inject, Injectable } from '@nestjs/common';
 import { In, Repository } from 'typeorm';
+import { AUDIT_SERVICE_PROXY } from '#config/environment';
 import { ChangeStatusDto } from './dtos/change-status.dto';
 import { ClientProxy } from '@nestjs/microservices';
 import { CreateAudit } from './interfaces/create-audit.interface';
@@ -12,7 +13,6 @@ import { OrdersQueryDto } from './dtos/orders-query.dto';
 import { Paginated } from '#common/types/pagination';
 import { Product } from './entities/product.entity';
 import { QueryRunner } from 'typeorm';
-import { TCP_NAME } from '#config/environment';
 import { User } from './entities/user.entity';
 
 @Injectable()
@@ -20,7 +20,7 @@ export class OrdersService {
   constructor(
     @InjectRepository(Order)
     private readonly orderRepository: Repository<Order>,
-    @Inject(TCP_NAME)
+    @Inject(AUDIT_SERVICE_PROXY)
     private readonly client: ClientProxy,
     private readonly transactionService: DatabaseTransactionService,
   ) {}
@@ -91,7 +91,7 @@ export class OrdersService {
       );
 
     order.status = status;
-    this.client.emit('create.audit', {
+    this.client.emit('order.status_changed', {
       orderId: order.id,
       fromStatus: currentStatus,
       toStatus: status,

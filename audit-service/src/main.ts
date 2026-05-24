@@ -1,5 +1,5 @@
+import { AUDIT_SERVICE_HOST, AUDIT_SERVICE_PORT } from '#config/environment';
 import { MicroserviceOptions, Transport } from '@nestjs/microservices';
-import { TCP_HOST, TCP_PORT } from '#config/environment';
 import { AppModule } from './app.module';
 import { Logger } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
@@ -10,8 +10,8 @@ async function bootstrap() {
     {
       transport: Transport.TCP,
       options: {
-        host: TCP_HOST,
-        port: TCP_PORT,
+        host: AUDIT_SERVICE_HOST,
+        port: AUDIT_SERVICE_PORT,
       },
     },
   );
@@ -19,7 +19,7 @@ async function bootstrap() {
 
   await app.listen();
   logger.log(
-    `Audit Microservice is listening via TCP on ${TCP_HOST}:${TCP_PORT}`,
+    `Audit Microservice is listening via TCP on ${AUDIT_SERVICE_HOST}:${AUDIT_SERVICE_PORT}`,
   );
 }
 

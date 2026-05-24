@@ -8,13 +8,13 @@ import { CreateAuditDto } from './dtos/create-audit.dto';
 export class AuditsController {
   constructor(private readonly auditsService: AuditsService) {}
 
-  @MessagePattern('order.audits')
+  @MessagePattern('order.audit.find_all')
   findOrderAudits(@Payload() orderId: string): Promise<Audit[]> {
     return this.auditsService.findOrderAudits(orderId);
   }
 
-  @EventPattern('create.audit')
-  create(@Payload() payload: CreateAuditDto): Promise<void> {
+  @EventPattern('order.status_changed')
+  handleOrderStatusChanged(@Payload() payload: CreateAuditDto): Promise<void> {
     return this.auditsService.create(payload);
   }
 }

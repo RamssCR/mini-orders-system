@@ -9,11 +9,11 @@ export const env = z.object({
   DB_PASSWORD: z.string(),
   DB_PORT: z.coerce.number().positive().default(5432),
   DB_NAME: z.string(),
-  RABBITMQ_URLS: z.string().transform((value) => value.trim().split(',')),
-  RABBITMQ_QUEUE: z.string(),
-  TCP_NAME: z.string(),
-  TCP_HOST: z.string().default('localhost'),
-  TCP_PORT: z.coerce.number().int().positive().min(0).max(65536),
+  ORDERS_SERVICE_URLS: z.string().transform((value) => value.trim().split(',')),
+  ORDERS_SERVICE_QUEUE: z.string(),
+  AUDIT_SERVICE_PROXY: z.string(),
+  AUDIT_SERVICE_HOST: z.string().default('localhost'),
+  AUDIT_SERVICE_PORT: z.coerce.number().int().positive().min(0).max(65536),
 });
 
 export type Env = z.infer<typeof env>;

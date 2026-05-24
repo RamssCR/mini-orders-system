@@ -1,5 +1,5 @@
 import { MicroserviceOptions, Transport } from '@nestjs/microservices';
-import { RABBITMQ_QUEUE, RABBITMQ_URLS } from '#config/environment';
+import { ORDERS_SERVICE_QUEUE, ORDERS_SERVICE_URLS } from '#config/environment';
 import { AppModule } from './app.module';
 import { NestFactory } from '@nestjs/core';
 
@@ -9,8 +9,8 @@ async function bootstrap() {
     {
       transport: Transport.RMQ,
       options: {
-        urls: RABBITMQ_URLS,
-        queue: RABBITMQ_QUEUE,
+        urls: ORDERS_SERVICE_URLS,
+        queue: ORDERS_SERVICE_QUEUE,
         queueOptions: {
           durable: false,
         },
