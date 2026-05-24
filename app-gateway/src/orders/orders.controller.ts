@@ -33,6 +33,6 @@ export class OrdersController {
 
   @Put(':id/status')
   changeStatus(@Param('id') orderId: string, @Query('status') status: Status) {
-    return this.client.send('order.update_status', { orderId, status });
+    return this.client.send('order.update_status', { id: orderId, status });
   }
 }
