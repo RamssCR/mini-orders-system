@@ -1,0 +1,252 @@
+[
+  {
+    "id": "f1a2b3c4-0000-4000-8000-000000000001",
+    "name": "Wireless Mouse",
+    "stock": 42
+  },
+  {
+    "id": "f1a2b3c4-0000-4000-8000-000000000002",
+    "name": "Ergonomic Keyboard",
+    "stock": 58
+  },
+  {
+    "id": "f1a2b3c4-0000-4000-8000-000000000003",
+    "name": "Noise-Cancelling Headphones",
+    "stock": 31
+  },
+  {
+    "id": "f1a2b3c4-0000-4000-8000-000000000004",
+    "name": "USB-C Charging Cable",
+    "stock": 76
+  },
+  {
+    "id": "f1a2b3c4-0000-4000-8000-000000000005",
+    "name": "Portable Power Bank",
+    "stock": 19
+  },
+  {
+    "id": "f1a2b3c4-0000-4000-8000-000000000006",
+    "name": "Bluetooth Speaker",
+    "stock": 83
+  },
+  {
+    "id": "f1a2b3c4-0000-4000-8000-000000000007",
+    "name": "Smartphone Stand",
+    "stock": 25
+  },
+  {
+    "id": "f1a2b3c4-0000-4000-8000-000000000008",
+    "name": "Laptop Sleeve",
+    "stock": 54
+  },
+  {
+    "id": "f1a2b3c4-0000-4000-8000-000000000009",
+    "name": "4K Monitor",
+    "stock": 67
+  },
+  {
+    "id": "f1a2b3c4-0000-4000-8000-00000000000a",
+    "name": "Mechanical Keyboard",
+    "stock": 38
+  },
+  {
+    "id": "f1a2b3c4-0000-4000-8000-00000000000b",
+    "name": "Gaming Mouse",
+    "stock": 92
+  },
+  {
+    "id": "f1a2b3c4-0000-4000-8000-00000000000c",
+    "name": "Webcam with Microphone",
+    "stock": 14
+  },
+  {
+    "id": "f1a2b3c4-0000-4000-8000-00000000000d",
+    "name": "External Hard Drive",
+    "stock": 70
+  },
+  {
+    "id": "f1a2b3c4-0000-4000-8000-00000000000e",
+    "name": "Wireless Earbuds",
+    "stock": 46
+  },
+  {
+    "id": "f1a2b3c4-0000-4000-8000-00000000000f",
+    "name": "Smartwatch",
+    "stock": 55
+  },
+  {
+    "id": "f1a2b3c4-0000-4000-8000-000000000010",
+    "name": "Fitness Tracker",
+    "stock": 29
+  },
+  {
+    "id": "f1a2b3c4-0000-4000-8000-000000000011",
+    "name": "LED Desk Lamp",
+    "stock": 64
+  },
+  {
+    "id": "f1a2b3c4-0000-4000-8000-000000000012",
+    "name": "Portable SSD",
+    "stock": 21
+  },
+  {
+    "id": "f1a2b3c4-0000-4000-8000-000000000013",
+    "name": "Streaming Microphone",
+    "stock": 78
+  },
+  {
+    "id": "f1a2b3c4-0000-4000-8000-000000000014",
+    "name": "Laptop Cooling Pad",
+    "stock": 43
+  },
+  {
+    "id": "f1a2b3c4-0000-4000-8000-000000000015",
+    "name": "Wireless Charger",
+    "stock": 86
+  },
+  {
+    "id": "f1a2b3c4-0000-4000-8000-000000000016",
+    "name": "Digital Photo Frame",
+    "stock": 32
+  },
+  {
+    "id": "f1a2b3c4-0000-4000-8000-000000000017",
+    "name": "Bluetooth Headset",
+    "stock": 59
+  },
+  {
+    "id": "f1a2b3c4-0000-4000-8000-000000000018",
+    "name": "Home Security Camera",
+    "stock": 48
+  },
+  {
+    "id": "f1a2b3c4-0000-4000-8000-000000000019",
+    "name": "Smart Light Bulb",
+    "stock": 90
+  },
+  {
+    "id": "f1a2b3c4-0000-4000-8000-00000000001a",
+    "name": "Wireless Router",
+    "stock": 11
+  },
+  {
+    "id": "f1a2b3c4-0000-4000-8000-00000000001b",
+    "name": "Noise-Isolating Earphones",
+    "stock": 73
+  },
+  {
+    "id": "f1a2b3c4-0000-4000-8000-00000000001c",
+    "name": "USB Hub",
+    "stock": 37
+  },
+  {
+    "id": "f1a2b3c4-0000-4000-8000-00000000001d",
+    "name": "Graphic Drawing Tablet",
+    "stock": 65
+  },
+  {
+    "id": "f1a2b3c4-0000-4000-8000-00000000001e",
+    "name": "Action Camera",
+    "stock": 24
+  },
+  {
+    "id": "f1a2b3c4-0000-4000-8000-00000000001f",
+    "name": "VR Headset",
+    "stock": 52
+  },
+  {
+    "id": "f1a2b3c4-0000-4000-8000-000000000020",
+    "name": "Smart Thermostat",
+    "stock": 69
+  },
+  {
+    "id": "f1a2b3c4-0000-4000-8000-000000000021",
+    "name": "Robot Vacuum",
+    "stock": 16
+  },
+  {
+    "id": "f1a2b3c4-0000-4000-8000-000000000022",
+    "name": "Portable Projector",
+    "stock": 45
+  },
+  {
+    "id": "f1a2b3c4-0000-4000-8000-000000000023",
+    "name": "Smart Doorbell",
+    "stock": 84
+  },
+  {
+    "id": "f1a2b3c4-0000-4000-8000-000000000024",
+    "name": "Electric Toothbrush",
+    "stock": 27
+  },
+  {
+    "id": "f1a2b3c4-0000-4000-8000-000000000025",
+    "name": "Air Purifier",
+    "stock": 61
+  },
+  {
+    "id": "f1a2b3c4-0000-4000-8000-000000000026",
+    "name": "Wireless Gaming Controller",
+    "stock": 39
+  },
+  {
+    "id": "f1a2b3c4-0000-4000-8000-000000000027",
+    "name": "4K TV",
+    "stock": 88
+  },
+  {
+    "id": "f1a2b3c4-0000-4000-8000-000000000028",
+    "name": "Bluetooth Car Adapter",
+    "stock": 34
+  },
+  {
+    "id": "f1a2b3c4-0000-4000-8000-000000000029",
+    "name": "Digital Alarm Clock",
+    "stock": 57
+  },
+  {
+    "id": "f1a2b3c4-0000-4000-8000-00000000002a",
+    "name": "Video Doorbell",
+    "stock": 75
+  },
+  {
+    "id": "f1a2b3c4-0000-4000-8000-00000000002b",
+    "name": "WiFi Range Extender",
+    "stock": 20
+  },
+  {
+    "id": "f1a2b3c4-0000-4000-8000-00000000002c",
+    "name": "Smart Plug",
+    "stock": 63
+  },
+  {
+    "id": "f1a2b3c4-0000-4000-8000-00000000002d",
+    "name": "Outdoor Security Light",
+    "stock": 41
+  },
+  {
+    "id": "f1a2b3c4-0000-4000-8000-00000000002e",
+    "name": "Smart Scale",
+    "stock": 97
+  },
+  {
+    "id": "f1a2b3c4-0000-4000-8000-00000000002f",
+    "name": "Noise-Reducing Earbuds",
+    "stock": 18
+  },
+  {
+    "id": "f1a2b3c4-0000-4000-8000-000000000030",
+    "name": "Bluetooth Record Player",
+    "stock": 66
+  },
+  {
+    "id": "f1a2b3c4-0000-4000-8000-000000000031",
+    "name": "Portable Photo Printer",
+    "stock": 50
+  },
+  {
+    "id": "f1a2b3c4-0000-4000-8000-000000000032",
+    "name": "Smart Home Hub",
+    "stock": 29
+  }
+]
