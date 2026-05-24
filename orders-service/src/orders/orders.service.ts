@@ -1,9 +1,9 @@
 import { ALLOWED_TRANSITIONS, Order } from './entities/order.entity';
-import { BadRequestException, Inject, Injectable } from '@nestjs/common';
 import { In, Repository } from 'typeorm';
+import { Inject, Injectable } from '@nestjs/common';
 import { AUDIT_SERVICE_PROXY } from '#config/environment';
 import { ChangeStatusDto } from './dtos/change-status.dto';
-import { ClientProxy } from '@nestjs/microservices';
+import { ClientProxy, RpcException } from '@nestjs/microservices';
 import { CreateAudit } from './interfaces/create-audit.interface';
 import { CreateOrderDto } from './dtos/create-order.dto';
 import { DatabaseTransactionService } from '#common/providers/query-runner.service';
@@ -80,15 +80,22 @@ export class OrdersService {
       where: { id },
       relations: { items: true, user: true },
     });
-    if (!order) throw new BadRequestException('Invalid order ID');
+    if (!order)
+      throw new RpcException({
+        message: 'Invalid order ID',
+        status: 400,
+        isRpc: true,
+      });
 
     const currentStatus = order.status;
     if (currentStatus === status) return order;
 
     if (!ALLOWED_TRANSITIONS[currentStatus].includes(status))
-      throw new BadRequestException(
-        `Invalid status transition: Cannot change from ${currentStatus} to ${status}`,
-      );
+      throw new RpcException({
+        message: `Invalid status transition: Cannot change from ${currentStatus} to ${status}`,
+        status: 400,
+        isRpc: true,
+      });
 
     order.status = status;
     this.client.emit('order.status_changed', {
@@ -132,9 +139,11 @@ export class OrdersService {
     });
 
     if (products.length !== productsDto.length)
-      throw new BadRequestException(
-        'Some products were not found during order creation',
-      );
+      throw new RpcException({
+        message: 'Some products were not found during order creation',
+        status: 400,
+        isRpc: true,
+      });
 
     return products;
   }
@@ -152,9 +161,11 @@ export class OrdersService {
       const quantity = itemsMap.get(product.id) ?? 0;
 
       if (product.stock < quantity)
-        throw new BadRequestException(
-          `Product ${product.name} is out of stock`,
-        );
+        throw new RpcException({
+          message: `Product ${product.name} is out of stock`,
+          status: 400,
+          isRpc: true,
+        });
 
       product.stock -= quantity;
       await queryRunner.manager.save(product);
