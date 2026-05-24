@@ -5,6 +5,7 @@ import {
   IsString,
   IsUUID,
   Length,
+  Min,
   ValidateNested,
 } from 'class-validator';
 import { Type } from 'class-transformer';
@@ -15,6 +16,7 @@ class ProductDto {
   id: string;
 
   @IsNumber()
+  @Min(1)
   @IsNotEmpty()
   quantity: number;
 }
