@@ -9,7 +9,7 @@ import { OrdersService } from './orders.service';
 export class OrdersController {
   constructor(private readonly ordersService: OrdersService) {}
 
-  @MessagePattern('orders.find_paginated')
+  @MessagePattern('order.find_paginated')
   findAll(@Payload() queries: OrdersQueryDto) {
     return this.ordersService.findPaginated(queries);
   }
