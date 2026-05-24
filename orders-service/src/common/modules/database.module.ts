@@ -8,8 +8,10 @@ import {
 } from '#config/environment';
 import { Module } from '@nestjs/common';
 import { Order } from '#orders/entities/order.entity';
+import { OrderItem } from '#orders/entities/order-items.entity';
 import { Product } from '#orders/entities/product.entity';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { User } from '#orders/entities/user.entity';
 
 @Module({
   imports: [
@@ -20,10 +22,10 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       username: DB_USER,
       password: DB_PASSWORD,
       database: DB_NAME,
-      synchronize: true,
+      synchronize: false,
       autoLoadEntities: true,
       logging: NODE_ENV === 'development',
-      entities: [Order, Product],
+      entities: [Order, OrderItem, Product, User],
     }),
   ],
 })
