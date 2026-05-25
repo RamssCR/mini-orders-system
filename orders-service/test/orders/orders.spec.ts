@@ -55,7 +55,6 @@ describe('Orders Service - Creation Flow (integration)', () => {
     };
 
     const mockDataSource = {
-      // Satisfies: this.dataSource.createQueryRunner()
       createQueryRunner: jest.fn().mockReturnValue(mockQueryRunner),
       manager: {
         query: jest.fn().mockResolvedValue([{ stock: 48 }]),
@@ -65,6 +64,7 @@ describe('Orders Service - Creation Flow (integration)', () => {
 
     const mockRabbitClient = {
       emit: jest.fn().mockReturnValue(of(null)),
+      send: jest.fn().mockReturnValue(of(null)),
     };
 
     moduleFixture = await Test.createTestingModule({
