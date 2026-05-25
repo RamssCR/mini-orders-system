@@ -111,3 +111,22 @@ four different tables: `User`, `Order`, `Product`, and `OrderItem`.
 ### Why did you use `lint-staged` in a personal project
 - **Pre-Commit Code Quality Assurance**: It is incredibly easy to accidentally commit console logs, commented-out dead code, or minor syntax formatting errors when working quickly. Implementing `lint-staged` forces the workspace to run strict ESLint analysis and prettier formatting checks before a commit is officially written to the git history.
 - **Automated CI Simulation**: By enforcing code quality guardrails locally at the commit level, it guarantees that any code pushed to a remote repository is already compliant with the workspace's structural rules. This prevents the common, messy anti-pattern of pushing broken code to a remote branch, waiting for a GitHub Actions pipeline to fail, and making multiple "fix lint" typo commits to patch it.
+
+## Extra
+Here's a sample for an order creation request.
+
+`POST /api/v1/orders`
+
+```JSON
+{
+  "name": "Jhon Doe",
+  "documentId": "522948331",
+  "phone": "8604102933",
+  "products": [
+    { "id": "f1a2b3c4-0000-4000-8000-000000000001", "quantity": 10 },
+  ]
+}
+```
+
+> [!NOTE]
+> To try with different product IDs, check the seeder file [here](./orders-service/seeders/products.json)
