@@ -102,7 +102,7 @@ setting up and independent event emitter.
 
 ### Why are more entities in the orders service instead of just the order entity mentioned in the technical test requirements?
 To avoid the standard data-mutation anti-pattern common in basic CRUD systems, the architecture splits order processing into
-three different tables: `User`, `Order`, `User`, and `OrderItem`.
+four different tables: `User`, `Order`, `User`, and `OrderItem`.
 
 - **The Historical Snapshot Protection**: If an `Order` pointed directly to a `Product` in a standard many-to-many join table, any future price adjustments or name edits in the product catalog would retroactively alter past financial order metrics.
 - **The Intermediary Junction Ledger (`OrderItem`)**: Introducing an explicit `OrderItem` entity allows us to freeze the exact point-in-time state of the purchase. It stores the specific quantity ordered by the user at that precise millisecond, preserving complete financial auditing integrity.
