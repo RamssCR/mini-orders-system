@@ -25,6 +25,8 @@
     "paths": {
       "#*": ["./src/*"],
       "$seeders/*": ["./seeders/*"]
-    }
-  }
+    },
+    "types": ["jest", "ts-jest", "@types/jest"]
+  },
+  "include": ["src", "test"]
 }
