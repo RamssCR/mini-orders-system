@@ -10,6 +10,7 @@ const config: Config = {
   forceExit: true,
   clearMocks: true,
   resetMocks: true,
+  detectOpenHandles: true,
 };
 
 export default config;
