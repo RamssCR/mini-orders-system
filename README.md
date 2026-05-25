@@ -48,10 +48,10 @@ npm run migration:run
 # Starts the Audit log collector (TCP Server / MongoDB Client)
 npm --prefix audit-service run start:dev
 
-# Starts the Orders processing engine (TCP Server / Postgres Client)
+# Starts the Orders processing engine (RabbitMQ Server / Postgres Client)
 npm --prefix orders-service run start:dev
 
-# Starts the public API Gateway (HTTP Entrypoint / TCP Client)
+# Starts the public API Gateway (HTTP Entrypoint / TCP/RabbitMQ Client)
 npm --prefix app-gateway run start:dev
 ```
 
@@ -67,6 +67,9 @@ npm run lint
 
 # Runs all test files
 npm test
+
+# Generate a coverage report
+npm run test:cov
 ```
 
 > [!NOTE]
@@ -78,7 +81,7 @@ For every changed made, once the developer commits them, an intermediary process
 - Verify linting errors (ESLint)
 - Run test files related to the changed files (Jest)
 
-If all processes are executed with no errors, commitlint will also evaluate the commit message follows a standard format:
+If all processes are executed successfully, commitlint will also evaluate the commit message follows a standard format:
 
 ```BASH
 git commit -m "subject: message starting in lower case and less than 100 characters"
@@ -99,7 +102,7 @@ setting up and independent event emitter.
 
 ### Why are more entities in the orders service instead of just the order entity mentioned in the technical test requirements?
 To avoid the standard data-mutation anti-pattern common in basic CRUD systems, the architecture splits order processing into
-three different tables: `User`, `Order`, and `OrderItem`.
+three different tables: `User`, `Order`, `User`, and `OrderItem`.
 
 - **The Historical Snapshot Protection**: If an `Order` pointed directly to a `Product` in a standard many-to-many join table, any future price adjustments or name edits in the product catalog would retroactively alter past financial order metrics.
 - **The Intermediary Junction Ledger (`OrderItem`)**: Introducing an explicit `OrderItem` entity allows us to freeze the exact point-in-time state of the purchase. It stores the specific quantity ordered by the user at that precise millisecond, preserving complete financial auditing integrity.
