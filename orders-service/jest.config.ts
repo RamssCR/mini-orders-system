@@ -22,6 +22,7 @@ const config: Config = {
   moduleNameMapper: pathsToModuleNameMapper(compilerOptions?.paths || {}, {
     prefix: '<rootDir>/',
   }),
+  setupFiles: ['<rootDir>/test/setup.ts'],
 };
 
 export default config;
